@@ -3787,7 +3787,7 @@ input, select, textarea {
 	min-width: 180px; /* Minimum width for the dropdown */
 	transition: opacity 0.3s ease, visibility 0.3s ease; /* Transition for opacity and visibility */
 	box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Shadow for visual separation */
-	z-index: 999;
+	z-index: 3;
   }
   
 
