@@ -380,3 +380,47 @@ $('.gallery')
 
 
 })(jQuery);
+
+document.querySelectorAll('.menu-item').forEach(item => {
+    let hideTimeout; // Store timeout ID for delay
+
+    item.addEventListener('mouseenter', function () {
+        const dropdownId = item.getAttribute('data-dropdown-target');
+        const dropdown = document.getElementById(dropdownId);
+
+        // Clear any existing timeout to prevent hiding
+        clearTimeout(hideTimeout);
+
+        // Position the dropdown next to the menu item
+        const rect = item.getBoundingClientRect();
+        dropdown.style.top = `${rect.bottom + window.scrollY}px`;
+        dropdown.style.left = `${rect.left + window.scrollX}px`;
+
+        // Show the dropdown by adding the active class
+        dropdown.classList.add('active');
+    });
+
+    item.addEventListener('mouseleave', function () {
+        const dropdownId = item.getAttribute('data-dropdown-target');
+        const dropdown = document.getElementById(dropdownId);
+
+        // Set a timeout to remove the active class after a delay
+        hideTimeout = setTimeout(() => {
+            dropdown.classList.remove('active');
+        }, 300); // Adjust the delay as needed (in milliseconds)
+    });
+
+    // Keep the dropdown visible while hovering over it
+    const dropdown = document.getElementById(item.getAttribute('data-dropdown-target'));
+    dropdown.addEventListener('mouseenter', () => {
+        clearTimeout(hideTimeout); // Prevent hiding if mouse enters dropdown
+        dropdown.classList.add('active');
+    });
+
+    dropdown.addEventListener('mouseleave', () => {
+        // Set a timeout to hide the dropdown after a delay
+        hideTimeout = setTimeout(() => {
+            dropdown.classList.remove('active');
+        }, 300); // Adjust delay duration as needed
+    });
+});

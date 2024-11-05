@@ -2933,7 +2933,7 @@ input, select, textarea {
 		}
 
 	ul {
-		list-style: disc;
+		list-style: none;
 		margin: 0 0 2rem 0;
 		padding-left: 1rem;
 	}
@@ -3774,50 +3774,7 @@ input, select, textarea {
 	position: relative; /* Necessary for positioning the dropdown */
   }
   
-  #nav ul.links li .dropdown {
-	display: block; /* Allow block display for transitions */
-  	opacity: 0; /* Start with transparent dropdown */
-	visibility: hidden; /* Prevent interaction when hidden */
-	position: absolute;
-	top: 100%; /* Position below the parent link */
-	left: 0;
-	background-color: rgba(255, 255, 255, 0);
-	padding: 0;
-	list-style: none;
-	min-width: 180px; /* Minimum width for the dropdown */
-	transition: opacity 0.3s ease, visibility 0.3s ease; /* Transition for opacity and visibility */
-	box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Shadow for visual separation */
-	z-index: 3;
-  }
   
-
-
- 
-  
-  /* Dropdown link styles */
-  #nav ul.links li .dropdown li a {
-	display: block;
-	color: #1e252d;
-	padding: 0.5rem 1rem;
-	font-size: 0.8rem;
-	text-transform: none;
-	background-color: rgb(255, 255, 255);
-	text-align: left;
-	white-space: nowrap; /* Prevent text wrapping */
-  }
-  
-  /* Hover effect for dropdown links */
-  #nav ul.links li .dropdown li a:hover {
-	background-color: rgb(199, 192, 191); /* Light background on hover */
-	color: #f56a6a;
-  }
-
-  /* Show the dropdown when hovering over the parent list item */
-#nav ul.links li:hover .dropdown {
-	opacity: 1; /* Fully opaque */
-	visibility: visible; /* Allow interaction */
-  }
-
 #nav ul.icons.alt li .icon:before {
 	box-shadow: inset 0 0 0 2px #ffffff;
 }
@@ -3878,6 +3835,57 @@ input, select, textarea {
 		display: none;
 	}
 }
+
+/* Base dropdown styling */
+.dropdown {
+    display: block; /* Keep it in the flow to allow transitions */
+	font-family: "Source Sans Pro", Helvetica, sans-serif;
+	font-weight: 900;
+	letter-spacing: 0.075em;
+    opacity: 0; /* Start with full transparency */
+    visibility: hidden; /* Prevent interaction when hidden */
+    position: absolute;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 0;
+    list-style: none;
+    min-width: 180px;
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth fade transition */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 10; /* High z-index to appear above other elements */
+}
+
+/* Dropdown shown with opacity transition */
+.dropdown.active {
+    opacity: 1; /* Fully visible */
+    visibility: visible; /* Allow interaction */
+}
+
+/* Individual dropdown link styles */
+.dropdown li a {
+    display: block;
+    color: #1e252d;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    text-transform: none;
+    background-color: rgb(255, 255, 255);
+    text-align: left;
+    white-space: nowrap; /* Prevent text wrapping */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+/* Hover effect for dropdown links */
+.dropdown li a:hover {
+    background-color: rgb(199, 192, 191); /* Light background on hover */
+    color: #f56a6a; /* Hover color */
+}
+
+/* Show the dropdown when JavaScript adds "active" class */
+.dropdown.active {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
 /* Main */
 
 	#main {
@@ -3886,7 +3894,7 @@ input, select, textarea {
 		margin: 0 auto;
 		width: calc(100% - 4rem);
 		max-width: 72rem;
-		z-index: 2;
+		z-index: 4;
 	}
 
 		#main > * {
@@ -5018,7 +5026,9 @@ input, select, textarea {
 				pointer-events: auto;
 				opacity: 1;
 				visibility: visible;
-				z-index: 11000;
+				content: '';
+				position: fixed ;
+				z-index: 11000 ;
 			}
 
 				.gallery .modal.visible:before {
@@ -5106,6 +5116,22 @@ input, select, textarea {
 				height: 14rem;
 			}
 
+		}
+
+		.video-container {
+			position: relative;
+			width: 100%;
+			padding-bottom: 56.25%; /* Aspect ratio for 16:9 videos */
+			height: 0;
+			overflow: hidden;
+		}
+		
+		.video-container iframe {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
 		}
 
 	
