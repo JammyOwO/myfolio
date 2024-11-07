@@ -5118,6 +5118,8 @@ input, select, textarea {
 
 		}
 
+/* video container */ 
+
 		.video-container {
 			position: relative;
 			width: 100%;
@@ -5133,5 +5135,26 @@ input, select, textarea {
 			width: 100%;
 			height: 100%;
 		}
+
+/* project Box */
+		.project-details {
+			background-color: #f0f0f0;  /* Light grey background */
+			color: #333;                /* Dark grey text */
+			padding: 10px 15px;         /* Padding inside the box */
+			border-radius: 5px;         /* Rounded corners */
+			font-size: 0.9em;           /* Smaller text */
+			list-style: none;           /* Remove default list styling */
+			max-width: 400px;           /* Limit the width of the box */
+			margin: 0 auto;             /* Center the box, optional */
+			text-align: left;
+		  }
+		  
+		  .project-details li {
+			margin-bottom: 5px;         /* Small space between list items */
+		  }
+		  
+		  .project-details li:last-child {
+			margin-bottom: 0;           /* Remove bottom margin for the last item */
+		  }
 
 	
