@@ -4925,6 +4925,14 @@ input, select, textarea {
 				height: 30vw;
 			}
 
+			.gallery a.square  {
+				width: 100%;
+			}
+
+				.gallery a.square img {
+					height: 20vw;
+				}
+
 		.gallery .modal {
 			display: -moz-flex;
 			display: -webkit-flex;
@@ -5098,7 +5106,6 @@ input, select, textarea {
 					.gallery a.portrait img {
 						height: 30rem;
 					}
-
 		}
 
 		@media screen and (max-width: 480px) {
