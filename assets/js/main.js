@@ -424,3 +424,96 @@ document.querySelectorAll('.menu-item').forEach(item => {
         }, 300); // Adjust delay duration as needed
     });
 });
+
+
+// Image Modal.
+$('.image-modal')
+.on('click', 'a', function(event) {
+
+	var $a = $(this),
+		$modal = $a.siblings('.modal'),
+		$modalImg = $modal.find('img'),
+		href = $a.attr('href');
+
+	// Not an image? Bail.
+	if (!href.match(/\.(jpg|gif|png|mp4)$/)) return;
+
+	// Prevent default.
+	event.preventDefault();
+	event.stopPropagation();
+
+	// Locked? Bail.
+	if ($modal[0]._locked) return;
+
+	// Lock.
+	$modal[0]._locked = true;
+
+	// Set src.
+	$modalImg.attr('src', href);
+
+	// Set visible.
+	$modal.addClass('visible');
+
+	// Focus.
+	$modal.focus();
+
+	// Delay.
+	setTimeout(function() {
+		$modal[0]._locked = false;
+	}, 600);
+})
+.on('click', '.modal', function(event) {
+
+	var $modal = $(this),
+		$modalImg = $modal.find('img');
+
+	// Locked? Bail.
+	if ($modal[0]._locked) return;
+
+	// Already hidden? Bail.
+	if (!$modal.hasClass('visible')) return;
+
+	// Stop propagation.
+	event.stopPropagation();
+
+	// Lock.
+	$modal[0]._locked = true;
+
+	// Clear visible, loaded.
+	$modal.removeClass('loaded');
+
+	// Delay.
+	setTimeout(function() {
+		$modal.removeClass('visible');
+		setTimeout(function() {
+
+			// Clear src.
+			$modalImg.attr('src', '');
+
+			// Unlock.
+			$modal[0]._locked = false;
+
+		}, 475);
+	}, 125);
+})
+.on('keypress', '.modal', function(event) {
+	var $modal = $(this);
+
+	// Escape? Hide modal.
+	if (event.keyCode == 27) $modal.trigger('click');
+})
+.on('mouseup mousedown mousemove', '.modal', function(event) {
+	// Stop propagation.
+	event.stopPropagation();
+})
+.prepend('<div class="modal" tabIndex="-1"><div class="inner"><img src="" /></div></div>')
+.find('img')
+.on('load', function(event) {
+	var $modalImg = $(this),
+		$modal = $modalImg.parents('.modal');
+
+	setTimeout(function() {
+		if (!$modal.hasClass('visible')) return;
+		$modal.addClass('loaded');
+	}, 275);
+});

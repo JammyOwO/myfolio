@@ -5164,4 +5164,104 @@ input, select, textarea {
 			margin-bottom: 0;           /* Remove bottom margin for the last item */
 		  }
 
+/*  image modal */
+
+
+		  .image-modal {
+			position: relative;
+		}
+		
+		.image-modal a {
+			display: inline-block; /* Ensure images retain default inline-block behavior */
+		}
+		
+		.image-modal img {
+			display: inline-block;
+			width: auto; /* Default behavior */
+			height: auto;
+			object-fit: contain; /* Prevent any cropping */
+		}
+		
+		.image.left,
+		.image-modal.image.left {
+			float: left;
+			margin: 0 1.5rem 1rem 0; /* Adjust margins as needed */
+		}
+		
+		.image-modal.image.left img {
+			display: block; /* Ensure images inside .image-modal align correctly */
+			width: 100%; /* Adjust to the context where it's used */
+		}
+
+		.image.right,
+		.image-modal.image.right {
+			float: right;
+			margin: 0 1.5rem 1rem 0; /* Adjust margins as needed */
+		}
+		
+		.image-modal.image.right img {
+			display: block; /* Ensure images inside .image-modal align correctly */
+			width: 100%; /* Adjust to the context where it's used */
+		}
+
+
+		.image-modal .modal {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			pointer-events: none;
+			user-select: none;
+			transition: opacity 0.5s ease, visibility 0.5s, z-index 0.5s;
+			background-color: rgba(255, 255, 255, 0.875);
+			height: 100%;
+			left: 0;
+			opacity: 0;
+			outline: 0;
+			position: fixed;
+			top: 0;
+			visibility: hidden;
+			width: 100%;
+			z-index: 0;
+		}
+		
+		.image-modal .modal:before {
+			animation: spinner 1s infinite linear;
+			transition: opacity 0.25s ease;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: 4rem;
+			content: '';
+			display: block;
+			height: 4rem;
+			left: 50%;
+			margin: -2rem 0 0 -2rem;
+			opacity: 0;
+			position: absolute;
+			top: 50%;
+			width: 4rem;
+		}
+		
+		.image-modal .modal .inner img {
+			box-shadow: 0 1rem 3rem 0 rgba(0, 0, 0, 0.35);
+			display: block;
+			max-height: 90vh;
+			max-width: 90vw;
+		}
+		
+		.image-modal .modal.visible {
+			pointer-events: auto;
+			opacity: 1;
+			visibility: visible;
+			z-index: 11000;
+		}
+		
+		.image-modal .modal.loaded:before {
+			opacity: 0;
+		}
+		
+		.image-modal .modal.loaded .inner img {
+			opacity: 1;
+			transform: translateY(0);
+		}		  
+
 	
