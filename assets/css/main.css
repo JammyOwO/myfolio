@@ -5262,6 +5262,23 @@ input, select, textarea {
 		.image-modal .modal.loaded .inner img {
 			opacity: 1;
 			transform: translateY(0);
-		}		  
+		}		
+		
+/*  pdf */
+		.pdf-container {
+			position: relative;
+			width: 100%;
+			padding-top: 141.4%; /* A4 */
+			overflow: hidden;
+		  }
+		  
+		  .pdf-container iframe {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			border: none;
+		  }
 
 	
